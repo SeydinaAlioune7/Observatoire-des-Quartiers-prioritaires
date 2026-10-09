@@ -1259,7 +1259,7 @@ const G=new Array(N);for(let i=0;i<N;i++)G[i]=geo(U.g[i],1);
 const Q=D.Q, QG=Q.g.map(s=>geo(s,QU/CU));
 const ZONE=c=>c.startsWith('97')?c.slice(0,3):'M';
 const UZ=U.d.map(ZONE), QZ=Q.d.map(ZONE);
-const S=D.S;const RS=JSON.parse(document.getElementById('resa').textContent);(function(){var m={};RS.R.forEach(function(r){m[r[0]]=(m[r[0]]||0)+r[2]});S.res=U.c.map(function(c){return m[c]||0})})();const RS=JSON.parse(document.getElementById('resa').textContent);(function(){var m={};RS.R.forEach(function(r){m[r[0]]=(m[r[0]]||0)+r[2]});S.res=U.c.map(function(c){return m[c]||0})})();
+const S=D.S;const RS=JSON.parse(document.getElementById('resa').textContent);(function(){var m={};RS.R.forEach(function(r){m[r[0]]=(m[r[0]]||0)+r[2]});S.res=U.c.map(function(c){return m[c]||0})})();
 const share=i=>U.p[i]>0?100*U.q[i]/U.p[i]:null;
 const IND={
  pop:{t:'Part de la population en QPV',k:'de la population vit en QPV',v:share,num:i=>U.q[i],den:i=>U.p[i]>0?U.p[i]:0,br:[5,10,20,30,40],z:'Aucun QPV',nd:'Donnée absente'},
@@ -1594,6 +1594,8 @@ window.addEventListener('message',function(e){var d=e.data||{};if(d.cmd==='csv')
 var b=document.createElement('button');b.className='fsb2';b.type='button';b.textContent='⤢ Plein écran';b.title='Afficher la carte en plein écran (Échap pour revenir)';
 b.addEventListener('pointerdown',function(e){e.stopPropagation()});b.onclick=function(e){e.stopPropagation();document.fullscreenElement?document.exitFullscreen():w.requestFullscreen()};
 document.addEventListener('fullscreenchange',function(){b.textContent=document.fullscreenElement?'⤡ Quitter le plein écran':'⤢ Plein écran';setTimeout(function(){window.dispatchEvent(new Event('resize'))},150)});w.appendChild(b)})();
+
+;
 /* ----- droits de réservation par bailleur pour le territoire ----- */
 (function(){var side=document.querySelector('.card.side');if(!side)return;var box=document.createElement('div');box.id='resabox';side.appendChild(box);
  var st=document.createElement('style');st.textContent='#resabox{margin-top:14px}#resabox table{table-layout:fixed;min-width:0!important;max-width:100%!important;width:100%;border-collapse:collapse;font-size:12.5px}#resabox th{font-weight:600;color:#5B6475;text-align:right;padding:5px 6px;border-bottom:1px solid #E2E5EA;font-size:11.5px}#resabox th:first-child,#resabox td:first-child{text-align:left;white-space:normal;width:42%;overflow-wrap:anywhere;font-size:11.5px}#resabox td,#resabox th{padding:5px 4px!important}#resabox td{white-space:nowrap;padding:5px 6px;border-bottom:1px solid #EEF0F3;text-align:right;font-variant-numeric:tabular-nums}#resabox .nt{font-size:11.5px;color:#6B778A;margin-top:6px;line-height:1.45}#resabox .tl{max-height:420px;overflow:auto;border:1px solid #E2E5EA;border-radius:6px}#resabox .pill{display:inline-block;padding:1px 7px;border-radius:99px;font-size:11px;font-weight:700}';document.head.appendChild(st);
@@ -1623,6 +1625,8 @@ function DURF(b){if(!b)return {l:'n.d.',c:['#EEF1F5','#8A93A3'],t:'Bailleur abse
 })();
 (function(){var k=document.getElementById('kpis');if(!k)return;var n=document.createElement('div');n.style.cssText='font-size:11.5px;line-height:1.45;color:#6B778A;margin:6px 2px 0';
  n.innerHTML='<b>Références des pourcentages.</b> Habitants en QPV / population municipale 2020 (Insee). Parc en QPV, passoires et vacance / logements sociaux du territoire (RPLS 2024 ; passoires rapportées aux logements dont l\'étiquette est renseignée). Familles logées 2025 et logements réservés pour 100 logements sociaux. « France » = ensemble des communes de l\'outil, outre-mer compris.';k.parentNode.insertBefore(n,k.nextSibling)})();
+
+;
 /* ----- évolutions du territoire ----- */
 (function(){var EV=JSON.parse(document.getElementById('evol').textContent);var side=document.querySelector('.card.side');var box=document.createElement('div');box.id='evolbox';var rb=document.getElementById('resabox');side.insertBefore(box,rb||null);
  var st=document.createElement('style');st.textContent='#evolbox{margin-top:14px}#evolbox .eg{display:grid;grid-template-columns:1fr;gap:10px;margin-top:8px}#evolbox .ec{border:1px solid #E2E5EA;border-radius:8px;padding:9px 11px}#evolbox .et{font-size:12.5px;font-weight:600;color:#1B2F55;margin-bottom:4px}#evolbox .es{font-size:11.5px;color:#6B778A;margin-top:3px}';document.head.appendChild(st);
@@ -1636,6 +1640,8 @@ function DURF(b){if(!b)return {l:'n.d.',c:['#EEF1F5','#8A93A3'],t:'Bailleur abse
   '</div>'};
  var _r=render;render=function(t){_r(t);try{__evolDraw()}catch(e){console.log(e.stack)}};try{__evolDraw()}catch(e){}
 })();
+
+;
 /* ----- focus cartographique (mode affiche) ----- */
 (function(){if(location.hash.indexOf('focus')<0)return;
  document.body.classList.add('focus');
@@ -1729,6 +1735,8 @@ function DURF(b){if(!b)return {l:'n.d.',c:['#EEF1F5','#8A93A3'],t:'Bailleur abse
  var _r=render;render=function(t){_r(t);try{draw()}catch(e){console.log(e.stack)}};try{draw()}catch(e){console.log(e.stack)}
  window.__printHTML=function(){var css=[].map.call(document.querySelectorAll('style'),function(s){return s.textContent}).join('\n');return '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Focus · '+cur.label+'</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap"><style>'+css+'\nbody{margin:0;background:#fff}#poster .styles{display:none}#poster svg.pmap{height:150mm}#poster .pb{min-height:0}@page{size:A4 landscape;margin:7mm}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}</style></head><body class="focus">'+P.outerHTML+'</body></html>'};
 })();
+
+;
 /* ----- infobulles ----- */
 (function(){var b=document.createElement('div');b.id='tipb';b.style.cssText='position:fixed;z-index:99999;max-width:300px;background:#1B2F55;color:#fff;font:13px/1.45 "Source Sans 3",system-ui,sans-serif;padding:8px 11px;border-radius:7px;box-shadow:0 8px 24px rgba(16,24,40,.25);pointer-events:none;opacity:0;transition:opacity .12s;left:0;top:0';
  function add(){document.body.appendChild(b)}if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
@@ -1743,6 +1751,8 @@ function DURF(b){if(!b)return {l:'n.d.',c:['#EEF1F5','#8A93A3'],t:'Bailleur abse
  window.__tipMap=function(map){function ap(){map.forEach(function(m){document.querySelectorAll(m[0]).forEach(function(el){if(!el.hasAttribute('data-tip')){el.setAttribute('data-tip',m[1]);if(m[2])el.classList.add('tipi')}})})}
   ap();new MutationObserver(function(){clearTimeout(window.__tipT);window.__tipT=setTimeout(ap,120)}).observe(document.body,{childList:true,subtree:true})};
 })();
+
+;
 window.__tipMap([
  ['#lv-e','Établissement public de coopération intercommunale : métropole, communauté urbaine ou d\'agglomération.'],
  ['#lv-d','Afficher un département entier.'],['#lv-r','Afficher une direction régionale d\'Action Logement Services.'],
@@ -1764,6 +1774,7 @@ window.__tipMap([
  ['#zin','Zoomer'],['#zout','Dézoomer'],['#zre','Revenir à la vue du territoire entier']
 ]);
 
+;
 })();<\/script></body></html><script>(function(){function f(){var l=document.getElementById("legend");if(!l)return setTimeout(f,300);l.addEventListener("click",function(e){if(e.target.closest("h3"))l.classList.toggle("min")});if(innerWidth<900)l.classList.add("min")}f()})();<\/script></body></html></script>
 
 <script>/* @preserve
@@ -1811,8 +1822,8 @@ function hero(p){const h=HERO[p];document.getElementById('hero').innerHTML=`<div
 /* ----- navigation ----- */
 let atlasDone=false;
 function go(p){CUR=p;document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.p===p));document.querySelectorAll('.pane').forEach(x=>x.hidden=x.id!=='p-'+p);hero(p);
- if(p==='atlas'&&!atlasDone){atlasDone=true;const src=document.getElementById('atlasSrc').textContent.replace(/<\\\/script/g,'</'+'script');document.getElementById('atlasFrame').src=URL.createObjectURL(new Blob([src],{type:'text/html'}))}
- if(p==='focus'&&!window.__focusDone){window.__focusDone=1;const src=document.getElementById('atlasSrc').textContent.replace(/<\\\/script/g,'</'+'script');document.getElementById('focusFrame').src=URL.createObjectURL(new Blob([src],{type:'text/html'}))+'#focus'}
+ if(p==='atlas'&&!atlasDone){atlasDone=true;const src=document.getElementById('atlasSrc').textContent.replace(/<\\\/script/g,'</'+'script');document.getElementById('atlasFrame').srcdoc = src}
+ if(p==='focus'&&!window.__focusDone){window.__focusDone=1;const src=document.getElementById('atlasSrc').textContent.replace(/<\\\/script/g,'</'+'script');document.getElementById('focusFrame').srcdoc = src.replace('const start=(location.hash.slice(1).split(\'&\')[0])||\'atlas\';','const start=\'focus\';')}
  if(p==='qpv'&&window.__qvInit)setTimeout(window.__qvInit,20);
  if(p==='adresse')setTimeout(initAdr,20);
  try{history.replaceState(null,'','#'+p)}catch(e){}}
@@ -1880,7 +1891,7 @@ function show(code){const q=PQ.Q[code];if(!q)return;cur=code;try{history.replace
  const sc=(q.sch||[]).map(i=>PQ.S[i]),scN=(q.schN||[]).map(i=>PQ.S[i]);
  const dens=q.pop&&q.area?Math.round(q.pop/(q.area/100)):null;const e=essentials(v);
  const c0=(q.csh||[])[0]||{};const CO=(PQ.C&&PQ.C[q.c0])||{};const cn=((q.csh||[]).find(x=>x.c===q.c0)||{}).n||q.com.split(',')[0];const W=q.w||{};
-  let h=`<div class="card" style="padding:18px 20px;border-left:6px solid ${C.qpv}"><div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><div style="flex:1;min-width:260px"><h2 style="margin:0;font-size:26px;color:${C.navy}">${q.n} <a href="https://fr.wikipedia.org/w/index.php?search=${encodeURIComponent(q.n)}" target="_blank" style="font-size:14px;background:#eee;padding:2px 8px;border-radius:12px;text-decoration:none;color:#555;vertical-align:middle;margin-left:8px" data-tip="Rechercher le quartier ${q.n} sur Wikipédia">Wikipédia : <b style="color:var(--red)">${q.n}</b> ↗</a></h2><div style="color:${C.mut};margin-top:3px">${q.com} · ${code}</div></div>
+  let h=`<div class="card" style="padding:18px 20px;border-left:6px solid ${C.qpv}"><div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><div style="flex:1;min-width:260px"><h2 style="margin:0;font-size:26px;color:${C.navy}">${q.n} <a href="https://fr.wikipedia.org/w/index.php?search=${encodeURIComponent("Quartier " + q.n + " " + q.com.split(",")[0].trim())}" target="_blank" style="font-size:14px;background:#eee;padding:2px 8px;border-radius:12px;text-decoration:none;color:#555;vertical-align:middle;margin-left:8px" data-tip="Rechercher le quartier ${q.n} sur Wikipédia">Wikipédia : <b style="color:var(--red)">${q.n}</b> ↗</a></h2><div style="color:${C.mut};margin-top:3px">${q.com} · ${code}</div></div>
   ${[[F(q.pop,0),'habitants'],[dens?F(dens,0):'n.d.','hab. / km²'],[F(v.ls,0),'logements sociaux'],[F(sc.length,0),'écoles, collèges, lycées']].map(t=>`<div><div style="font-size:24px;font-weight:700;color:${C.ink}">${t[0]}</div><div style="font-size:12px;color:${C.mut}">${t[1]}</div></div>`).join('')}</div>
   <div style="margin-top:12px;font-size:14px;color:${C.ink}">${(q.csh||[]).map(x=>`À <b>${x.n||x.c}</b>, les QPV regroupent <b style="color:${C.qpvl}">${x.pop!=null?F(x.pop)+' %':'n.d.'}</b> des habitants, <b style="color:${C.qpvl}">${x.parc!=null?F(x.parc)+' %':'n.d.'}</b> du parc social et <b style="color:${C.qpvl}">${x.area!=null?F(x.area)+' %':'n.d.'}</b> de la surface.`).join('<br>')}</div>
   ${Object.keys(W).length?`<div class="step" style="margin:16px 0 8px" data-tip="Part que représente le quartier dans sa commune principale. Exemple : 30 % des demandeurs d'emploi signifie que 3 demandeurs d'emploi de la commune sur 10 habitent ce quartier.">Poids du quartier dans la commune de ${cn}</div><div style="display:grid;grid-template-columns:repeat(${Object.keys(W).length},1fr);gap:8px">${[['pop','des habitants','Population municipale du quartier (Insee 2020) rapportée à celle de la commune.'],['ls','des logements sociaux','Logements sociaux du quartier rapportés au parc social de la commune (RPLS 2025).'],['defm','des demandeurs d\'emploi','Demandeurs d\'emploi de catégories A, B, C du quartier rapportés à ceux de la commune (France Travail, 2024).'],['caf','des allocataires CAF','Allocataires CAF du quartier rapportés à ceux de la commune (CAF, fin 2024).']].filter(x=>W[x[0]]!=null).map(x=>`<div data-tip="${x[2]}" style="border:1px solid ${C.line};border-radius:8px;padding:9px 10px"><div style="font-size:21px;font-weight:700;color:${C.qpvl}">${F(W[x[0]])} %</div><div style="font-size:12px;color:${C.mut}">${x[1]} de la commune</div></div>`).join('')}</div>${W.defm!=null&&W.pop!=null&&W.defm>W.pop*1.15?`<div class="note" style="margin-top:6px">Le quartier concentre plus de demandeurs d'emploi (${F(W.defm)} %) que d'habitants (${F(W.pop)} %) de la commune.</div>`:''}`:''}</div>`;
