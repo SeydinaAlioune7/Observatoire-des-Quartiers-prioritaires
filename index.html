@@ -1205,7 +1205,7 @@ tr:hover td,tr.on td{background:#EEF2F8!important}
       <button id="lv-d" data-l="d" aria-pressed="false">Département</button>
       <button id="lv-r" data-l="r" aria-pressed="false">DR</button>
     </div>
-    <select id="ind" aria-label="Indicateur"><option value="pop">Population vivant en QPV</option><option value="parc">Parc social situé en QPV</option><option value="fg">Passoires énergétiques F/G</option><option value="vac">Logements vacants proposés à la location</option><option value="res">Logements réservés ALS</option><option value="res">Logements réservés ALS</option><option value="att">Attributions Action Logement 2025</option></select>
+    <select id="ind" aria-label="Indicateur"><option value="pop">Population vivant en QPV</option><option value="parc">Parc social situé en QPV</option><option value="fg">Passoires énergétiques F/G</option><option value="vac">Logements vacants proposés à la location</option><option value="res">Logements réservés ALS</option><option value="att">Attributions Action Logement 2025</option></select>
     <input id="q" type="search" list="opts" placeholder="Rechercher un territoire…" aria-label="Territoire">
     <datalist id="opts"></datalist>
     <label><input id="t-qpv" type="checkbox" checked> Contours QPV 2024</label>
@@ -1245,7 +1245,7 @@ const CAT=[
  ['Habitants',[['pop','Part de la population vivant en QPV','Habitants d’une commune qui résident dans un quartier prioritaire.','Insee, QPV 2024 · population 2020']]],
  ['Parc social',[['parc','Part du parc social situé en QPV','Logements sociaux de la commune situés dans un quartier prioritaire.','RPLS au 1er janvier 2024'],['vac','Logements vacants proposés à la location','Logements proposés à la location mais vacants, rapportés à l’ensemble du parc social.','RPLS au 1er janvier 2024']]],
  ['Rénovation énergétique',[['fg','Passoires énergétiques (F ou G)','Logements sociaux classés F ou G parmi ceux dont l’étiquette est renseignée.','RPLS 2024 · diagnostics de performance énergétique']]],
- ['Action Logement',[['res','Logements réservés pour 100 logements sociaux','Logements réservés par Action Logement lors des engagements 2018-2025, rapportés au parc social de la commune.','POLARIS · engagements personnes morales 2018-2025'],['res','Logements réservés pour 100 logements sociaux','Logements réservés par Action Logement lors des engagements 2018-2025, rapportés au parc social de la commune.','POLARIS — engagements personnes morales 2018-2025'],['att','Familles logées pour 100 logements sociaux','Familles logées par Action Logement en 2025, rapportées au parc social de la commune.','Action Logement · attributions 2025']]]];
+ ['Action Logement',[['res','Logements réservés pour 100 logements sociaux','Logements réservés par Action Logement lors des engagements 2018-2025, rapportés au parc social de la commune.','POLARIS · engagements personnes morales 2018-2025'],['att','Familles logées pour 100 logements sociaux','Familles logées par Action Logement en 2025, rapportées au parc social de la commune.','Action Logement · attributions 2025']]]];
 const D=JSON.parse(document.getElementById('data').textContent);
 const U=D.U, N=U.c.length, CU=D.cu, QU=D.qu, UN=D.unit;
 const A='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_', AI={};[...A].forEach((c,i)=>AI[c]=i);
@@ -1266,7 +1266,6 @@ const IND={
  parc:{t:'Part du parc social situé en QPV',k:'du parc social est situé en QPV',v:i=>S.tot[i]>0?100*S.qpv[i]/S.tot[i]:null,num:i=>S.qpv[i],den:i=>S.tot[i],br:[10,25,40,55,70],z:'Aucun logement en QPV',nd:'Pas de logement social'},
  fg:{t:'Passoires F/G (% des logements étiquetés)',k:'des logements sociaux étiquetés sont F ou G',v:i=>S.et[i]>0?100*S.fg[i]/S.et[i]:null,num:i=>S.fg[i],den:i=>S.et[i],br:[1,2.5,5,10,20],z:'Aucune passoire',nd:'Pas d’étiquette renseignée'},
  att:{t:'Familles logées par Action Logement en 2025, pour 100 logements sociaux',k:'familles logées par ALS en 2025 pour 100 logements sociaux',v:i=>S.tot[i]>0?100*S.att[i]/S.tot[i]:null,num:i=>S.att[i],den:i=>S.tot[i],br:[0.5,1.5,2.5,3.5,5],z:'Aucune attribution ALS',nd:'Pas de logement social'},
- res:{t:'Logements réservés ALS pour 100 logts sociaux',k:'logements réservés par ALS (2018-2025) pour 100 logements sociaux',v:i=>S.tot[i]>0?100*S.res[i]/S.tot[i]:null,num:i=>S.res[i],den:i=>S.tot[i],br:[2,5,10,20,35],z:'Aucune réservation',nd:'Pas de logement social'},
  res:{t:'Logements réservés ALS pour 100 logts sociaux',k:'logements réservés par ALS (2018-2025) pour 100 logements sociaux',v:i=>S.tot[i]>0?100*S.res[i]/S.tot[i]:null,num:i=>S.res[i],den:i=>S.tot[i],br:[2,5,10,20,35],z:'Aucune réservation',nd:'Pas de logement social'},
  vac:{t:'Logements vacants proposés à la location',k:'du parc social est vacant et proposé à la location',v:i=>S.tot[i]>0?100*S.vac[i]/S.tot[i]:null,num:i=>S.vac[i],den:i=>S.tot[i],br:[1,2,3,5,8],z:'Aucun',nd:'Pas de logement social'}};
 let ind='pop';
@@ -1574,208 +1573,7 @@ window.__tipMap([
 
 })();
 <\/script>
-<script>(function(){function f(){var l=document.getElementById("legend");if(!l)return setTimeout(f,300);l.addEventListener("click",function(e){if(e.target.closest("h3"))l.classList.toggle("min")});if(innerWidth<900)l.classList.add("min")}f()window.__csv=function(){var r=[['Code commune','Commune','Département','Population 2020','Population en QPV','Part en QPV (%)','Logements sociaux','dont en QPV','Part du parc en QPV (%)','Logements F ou G','Étiquettes renseignées','Part F/G (%)','Logements vacants proposés','Taux de vacance (%)','Familles logées ALS 2025','Pour 100 logements sociaux','Logements réservés ALS 2018-2025','Réservés pour 100 logements sociaux']];
- members.slice().sort(function(a,b){return U.n[a].localeCompare(U.n[b])}).forEach(function(i){r.push([U.c[i],U.n[i],U.d[i],U.p[i],U.q[i],IND.pop.v(i),S.tot[i],S.qpv[i],IND.parc.v(i),S.fg[i],S.et[i],IND.fg.v(i),S.vac[i],IND.vac.v(i),S.att[i],IND.att.v(i),S.res[i],IND.res.v(i)])});
- var ev=__evolTot();r.push([]);r.push(['Évolutions du territoire','2022','2023','2024','2025']);r.push(['Familles logées ALS',ev.T[6],'',ev.T[7],ev.T[8]]);r.push(['Logements F/G (RPLS)','',ev.T[1],ev.T[4],'']);r.push(['Logements étiquetés (RPLS)','',ev.T[2],ev.T[5],'']);r.push(['Logements réservés (engagements)',ev.R[4],ev.R[5],ev.R[6],ev.R[7]]);r.push([]);r.push(['Droits de réservation par bailleur','Réservés 2018-2025 (communes)','Droits en stock (départements)','À livrer','Flux annuel 2024','Durée d\'écoulement','Calcul']);__resaRows().forEach(function(o){r.push([o.n,o.res,o.dis,o.liv,o.flux,DURF(o.b).l,DURF(o.b).t])});
- return {name:document.getElementById('tname').textContent,rows:r}};
-window.__printHTML=function(){var css=[].map.call(document.querySelectorAll('style'),function(s){return s.textContent}).join('\n');
- var svg=document.getElementById('map').cloneNode(true);svg.removeAttribute('style');svg.setAttribute('width','100%');svg.setAttribute('height','100%');
- var lg=document.getElementById('legend').cloneNode(true);lg.classList.remove('min');
- var tb=document.querySelector('.tbl table').outerHTML;
- return '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>'+document.getElementById('tname').textContent+'</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap"><style>'+css+
- '\nbody{background:#fff;margin:0;font-family:"Source Sans 3",sans-serif;color:#1B2F55}@page{size:A4 landscape;margin:10mm}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.pg{display:grid;grid-template-columns:1fr 240px;gap:14px;height:165mm;overflow:hidden}.side2{overflow:hidden;height:165mm}.mp{position:relative;height:165mm;border:1px solid #E2E5EA;border-radius:6px;overflow:hidden}.mp svg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important}.side2 .legend{position:static!important;max-width:none!important;background:#fff!important;box-shadow:none!important}.side2 .legend>*{display:revert!important}.side2 .legend h3::after{content:none!important}h1{font-size:20px;margin:0 0 2px}.st{color:#5B6475;font-size:12px;margin-bottom:8px}.kp{font-size:11px}.kp .kpis{display:grid!important;grid-template-columns:1fr!important;gap:4px}.foot{font-size:10px;color:#6B778A;margin-top:6px}.t2{break-before:page;font-size:11px}.t2 table{width:100%;border-collapse:collapse}.t2 td,.t2 th{border-bottom:1px solid #E2E5EA;padding:3px 6px;text-align:left}.t2 .r{text-align:right}</style></head><body>'+
- '<h1>'+document.getElementById('tname').textContent+' · '+IND[ind].t+'</h1><div class="st">'+document.getElementById('tsub').textContent+'</div>'+
- '<div class="pg"><div class="mp">'+svg.outerHTML+'</div><div class="side2">'+lg.outerHTML+'<div class="kp">'+document.getElementById('kpis').outerHTML+'</div></div></div>'+
- '<div class="foot">Sources : Insee QPV 2024, RPLS 2024, Action Logement attributions 2025. Observatoire des quartiers prioritaires · Action Logement Services, DFBC-POM · Pôle Process Outils et Méthodes. Édité le '+new Date().toLocaleDateString('fr-FR')+'.</div>'+
- '<div class="t2"><h1>Communes avec au moins un quartier prioritaire</h1>'+tb+'</div></body></html>'};
-window.addEventListener('message',function(e){var d=e.data||{};if(d.cmd==='csv')parent.postMessage({rep:'csv',v:window.__csv()},'*');if(d.cmd==='print')parent.postMessage({rep:'print',v:window.__printHTML()},'*')});
-
-(function(){var w=document.getElementById('mapwrap');if(!w)return;var st=document.createElement('style');st.textContent='#mapwrap:fullscreen{height:100vh!important;border-radius:0}.fsb2{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:30;background:#fff;border:1px solid #C9D1DC;border-radius:6px;padding:6px 10px;font:600 12.5px/1 inherit;color:#1F2A44;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.15)}';document.head.appendChild(st);
-var b=document.createElement('button');b.className='fsb2';b.type='button';b.textContent='⤢ Plein écran';b.title='Afficher la carte en plein écran (Échap pour revenir)';
-b.addEventListener('pointerdown',function(e){e.stopPropagation()});b.onclick=function(e){e.stopPropagation();document.fullscreenElement?document.exitFullscreen():w.requestFullscreen()};
-document.addEventListener('fullscreenchange',function(){b.textContent=document.fullscreenElement?'⤡ Quitter le plein écran':'⤢ Plein écran';setTimeout(function(){window.dispatchEvent(new Event('resize'))},150)});w.appendChild(b)})();
-
-;
-/* ----- droits de réservation par bailleur pour le territoire ----- */
-(function(){var side=document.querySelector('.card.side');if(!side)return;var box=document.createElement('div');box.id='resabox';side.appendChild(box);
- var st=document.createElement('style');st.textContent='#resabox{margin-top:14px}#resabox table{table-layout:fixed;min-width:0!important;max-width:100%!important;width:100%;border-collapse:collapse;font-size:12.5px}#resabox th{font-weight:600;color:#5B6475;text-align:right;padding:5px 6px;border-bottom:1px solid #E2E5EA;font-size:11.5px}#resabox th:first-child,#resabox td:first-child{text-align:left;white-space:normal;width:42%;overflow-wrap:anywhere;font-size:11.5px}#resabox td,#resabox th{padding:5px 4px!important}#resabox td{white-space:nowrap;padding:5px 6px;border-bottom:1px solid #EEF0F3;text-align:right;font-variant-numeric:tabular-nums}#resabox .nt{font-size:11.5px;color:#6B778A;margin-top:6px;line-height:1.45}#resabox .tl{max-height:420px;overflow:auto;border:1px solid #E2E5EA;border-radius:6px}#resabox .pill{display:inline-block;padding:1px 7px;border-radius:99px;font-size:11px;font-weight:700}';document.head.appendChild(st);
- window.__resaRows=function(){var deps={},coms={};members.forEach(function(i){deps[U.d[i]]=1;coms[U.c[i]]=1});var M={};
-  function g(s){return M[s]||(M[s]={s:s,res:0,ops:0,dis:0,liv:0,flux:null})}
-  RS.R.forEach(function(r){if(coms[r[0]]){var o=g(r[1]);o.res+=r[2];o.ops+=r[3]}});
-  RS.A.forEach(function(a){if(deps[a[1]]){var o=g(a[0]);o.dis+=a[2];o.liv+=a[3];if(a[4]!=null)o.flux=(o.flux||0)+a[4]}});
-  return Object.keys(M).map(function(k){var o=M[k],b=RS.B[k];o.n=(b&&b[0])||RS.N[k]||k;o.b=b;return o}).filter(function(o){return o.res||o.dis||o.liv}).sort(function(a,b){return (b.dis+b.liv)-(a.dis+a.liv)||b.res-a.res})};
- window.__resaDraw=function(){var L=__resaRows(),f=function(v){return v==null?'·':fmt.format(Math.round(v))};var T={res:0,dis:0,liv:0,flux:0};L.forEach(function(o){T.res+=o.res;T.dis+=o.dis;T.liv+=o.liv;T.flux+=o.flux||0});
-  var nd=Object.keys(members.reduce(function(a,i){a[U.d[i]]=1;return a},{})).length;
-function DURF(b){if(!b)return {l:'n.d.',c:['#EEF1F5','#8A93A3'],t:'Bailleur absent du fichier de consommation.'};var t=b[6]||'',st=b[5]||0,fa=(b[8]||0)*365,F=function(v){return Math.round(v).toLocaleString('fr-FR')};
- if(/épuisé/.test(t))return {l:'Stock épuisé',c:['#FBE7E3','#B4232C'],t:'Plus aucun droit en stock : les familles logées ont consommé tout le stock.'};
- if(/non consommé/.test(t)||!fa)return {l:'Aucune famille logée',c:['#EEF1F5','#5B6475'],t:'Aucune famille logée sur ce stock entre 2023 et 2025 : pas de rythme pour projeter une durée. Stock : '+F(st)+' droits.'};
- var y=st/fa,raw='Stock '+F(st)+' droits ÷ '+(fa<10?fa.toLocaleString('fr-FR',{maximumFractionDigits:1}):F(fa))+' familles logées par an (moyenne 2023-2025) = '+(y<100?y.toLocaleString('fr-FR',{maximumFractionDigits:1}):F(y))+' ans.';
- if(y>30||fa<5)return {l:'Plus de 30 ans',c:['#FDE8D7','#9A3412'],t:'Projection peu fiable : rythme de consommation trop faible. '+raw};
- var a=Math.floor(y),m=Math.round((y-a)*12);if(m===12){a++;m=0}
- return {l:a+' an'+(a>1?'s':'')+(m?' '+m+' mois':''),c:y>=10?['#FFF2DC','#8A5A00']:['#E0F3F1','#0B6E69'],t:raw}}
-
-  window.DURF=DURF;
-  function dur(o){var d=DURF(o.b);return '<span class="pill" data-tip="'+d.t+'" style="background:'+d.c[0]+';color:'+d.c[1]+';white-space:nowrap">'+d.l+'</span>'}
-  box.innerHTML='<h3 class="t">Droits de réservation Action Logement</h3>'+
-  '<div class="kpis"><div class="kpi"><div class="v">'+f(T.res)+'</div><div class="l">logements réservés par ALS (engagements 2018-2025) dans les communes</div></div><div class="kpi"><div class="v">'+f(T.dis)+'</div><div class="l">droits en stock fin 2025 dans '+(nd>1?'les '+nd+' départements':'le département')+'</div></div><div class="kpi"><div class="v">'+f(T.liv)+'</div><div class="l">droits de suite à livrer</div></div><div class="kpi"><div class="v">'+f(T.flux)+'</div><div class="l">logements du flux annuel 2024</div></div></div>'+
-  '<div class="tl"><table><thead><tr><th>Bailleur</th><th title="Engagements POLARIS 2018-2025 dans les communes du territoire">Réservés</th><th title="Stock de droits ANCOLS au 31/12/2025 : droits uniques et droits de suite livrés">Stock</th><th title="Durée d\'écoulement du stock au rythme 2023-2025, tous territoires du bailleur">Durée</th></tr></thead><tbody>'+
-  L.slice(0,60).map(function(o){return '<tr title="À livrer : '+f(o.liv)+' · Flux 2024 : '+f(o.flux)+'"><td>'+o.n+'</td><td>'+f(o.res)+'</td><td>'+f(o.dis)+'</td><td>'+dur(o)+'</td></tr>'}).join('')+'</tbody></table></div>'+
-  '<div class="nt"><b>Lecture.</b> Réservés : logements réservés par Action Logement lors des engagements 2018-2025 (POLARIS) dans les communes du territoire. Droits en stock, à livrer et flux : ANCOLS 2025 et flux 2024, au niveau du ou des départements. Écoulement : temps nécessaire pour consommer le stock du bailleur au rythme moyen des familles logées 2023-2025 (fichier de consommation par bailleur, février 2026), tous territoires confondus.</div>'};
- var _r=render;render=function(t){_r(t);try{__resaDraw()}catch(e){console.log(e.stack)}};try{__resaDraw()}catch(e){}
-})();
-(function(){var k=document.getElementById('kpis');if(!k)return;var n=document.createElement('div');n.style.cssText='font-size:11.5px;line-height:1.45;color:#6B778A;margin:6px 2px 0';
- n.innerHTML='<b>Références des pourcentages.</b> Habitants en QPV / population municipale 2020 (Insee). Parc en QPV, passoires et vacance / logements sociaux du territoire (RPLS 2024 ; passoires rapportées aux logements dont l\'étiquette est renseignée). Familles logées 2025 et logements réservés pour 100 logements sociaux. « France » = ensemble des communes de l\'outil, outre-mer compris.';k.parentNode.insertBefore(n,k.nextSibling)})();
-
-;
-/* ----- évolutions du territoire ----- */
-(function(){var EV=JSON.parse(document.getElementById('evol').textContent);var side=document.querySelector('.card.side');var box=document.createElement('div');box.id='evolbox';var rb=document.getElementById('resabox');side.insertBefore(box,rb||null);
- var st=document.createElement('style');st.textContent='#evolbox{margin-top:14px}#evolbox .eg{display:grid;grid-template-columns:1fr;gap:10px;margin-top:8px}#evolbox .ec{border:1px solid #E2E5EA;border-radius:8px;padding:9px 11px}#evolbox .et{font-size:12.5px;font-weight:600;color:#1B2F55;margin-bottom:4px}#evolbox .es{font-size:11.5px;color:#6B778A;margin-top:3px}';document.head.appendChild(st);
- function bars(lab,val,col){var mx=Math.max.apply(null,val.concat([1])),w=100/val.length;return '<svg viewBox="0 0 300 74" width="100%" height="74" role="img">'+val.map(function(v,i){var h=Math.round(38*v/mx),x=i*300/val.length+4,bw=300/val.length-8;return '<rect x="'+x+'" y="'+(54-h)+'" width="'+bw+'" height="'+h+'" rx="2" fill="'+col+'"><title>'+lab[i]+' : '+fmt.format(v)+'</title></rect><text x="'+(x+bw/2)+'" y="68" text-anchor="middle" font-size="10" fill="#6B778A">'+lab[i]+'</text>'+(v?'<text x="'+(x+bw/2)+'" y="'+(50-h)+'" text-anchor="middle" font-size="9.5" fill="#1B2F55">'+fmt.format(v)+'</text>':'')}).join('')+'</svg>'}
- window.__evolTot=function(){var T=[0,0,0,0,0,0,0,0,0],R=[0,0,0,0,0,0,0,0];members.forEach(function(i){var e=EV[U.c[i]];if(!e)return;for(var k=0;k<9;k++)T[k]+=e[k];for(k=0;k<8;k++)R[k]+=e[9][k]});return {T:T,R:R}};
- window.__evolDraw=function(){var o=__evolTot(),T=o.T,R=o.R;var p23=T[2]?100*T[1]/T[2]:null,p24=T[5]?100*T[4]/T[5]:null;var d=(p23!=null&&p24!=null)?p24-p23:null;
-  box.innerHTML='<h3 class="t" data-tip="Évolution des principaux indicateurs pour l\'ensemble des communes du territoire.">Évolutions</h3><div class="eg">'+
-  '<div class="ec" data-tip="Familles logées par Action Logement dans les communes du territoire (fichier de compilation des attributions). L\'année 2023 manque et 2022 ne couvre pas le même volume : seules 2024 et 2025 sont comparées.">'+'<div class="et">Familles logées par Action Logement</div>'+bars(['2024','2025'],[T[7],T[8]],'#E2004B')+(T[7]&&T[8]?'<div class="es">'+(T[8]>=T[7]?'+':'')+nf(100*(T[8]-T[7])/T[7])+' % entre 2024 et 2025</div>':'')+'</div>'+
-  '<div class="ec" data-tip="Logements réservés par Action Logement, par année d\'engagement de la convention (POLARIS).">'+'<div class="et">Logements réservés par année d\'engagement</div>'+bars(['18','19','20','21','22','23','24','25'],R,'#24406F')+'</div>'+
-  '<div class="ec" data-tip="Part des logements sociaux classés F ou G parmi les logements dont l\'étiquette est renseignée, au RPLS 2023 puis 2024.">'+'<div class="et">Passoires F/G dans le parc social</div><div style="display:flex;gap:18px;align-items:baseline;font-variant-numeric:tabular-nums"><div><div style="font-size:11.5px;color:#6B778A">RPLS 2023</div><b style="font-size:19px">'+(p23!=null?nf(p23)+' %':'n.d.')+'</b><div class="es">'+fmt.format(T[1])+' logts</div></div><div><div style="font-size:11.5px;color:#6B778A">RPLS 2024</div><b style="font-size:19px">'+(p24!=null?nf(p24)+' %':'n.d.')+'</b><div class="es">'+fmt.format(T[4])+' logts</div></div>'+(d!=null?'<div style="margin-left:auto;font-weight:700;color:'+(d<=0?'#0B6E69':'#B4232C')+'">'+(d>0?'+':'')+nf(d)+' pt</div>':'')+'</div></div>'+
-  '</div>'};
- var _r=render;render=function(t){_r(t);try{__evolDraw()}catch(e){console.log(e.stack)}};try{__evolDraw()}catch(e){}
-})();
-
-;
-/* ----- focus cartographique (mode affiche) ----- */
-(function(){if(location.hash.indexOf('focus')<0)return;
- document.body.classList.add('focus');
- var st=document.createElement('style');st.textContent=[
- 'body.focus main{display:block!important;max-width:1500px;margin:0 auto}','body.focus main>*:not(#poster){position:absolute!important;left:-99999px!important;top:0;width:900px!important;height:700px!important;visibility:hidden}',
- 'body.focus .notes,body.focus .legend,body.focus label:has(#t-qpv),body.focus label:has(#t-lab),body.focus #ind{display:none!important}',
- '#poster{background:#fff;border:1px solid #E2E5EA;border-radius:12px;overflow:hidden;font-family:"Source Sans 3",system-ui,sans-serif;color:#1B2F55}',
- '#poster .ph{background:#1B2F55;color:#fff;padding:18px 26px 16px}#poster .ph .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75;font-weight:700}#poster .ph h1{margin:4px 0 2px;font-size:27px;line-height:1.15;font-weight:800;letter-spacing:-.01em}#poster .ph p{margin:0;font-size:14px;opacity:.85}',
- '#poster .styles{display:flex;gap:6px;flex-wrap:wrap;padding:12px 26px;border-bottom:1px solid #EEF0F3;background:#F7F8FA}#poster .styles button{border:1px solid #CDD2DA;background:#fff;border-radius:99px;padding:6px 14px;font:600 13px inherit;color:#1B2F55;cursor:pointer}#poster .styles button[aria-pressed=true]{background:#1B2F55;color:#fff;border-color:#1B2F55}',
- '#poster .pb{display:grid;grid-template-columns:330px minmax(0,1fr);min-height:640px}',
- '#poster .pl{padding:22px 24px;border-right:1px solid #EEF0F3;background:#FBFCFD}',
- '#poster .big{font-size:15.5px;line-height:1.5;margin:0 0 16px}#poster .big b{font-size:30px;font-weight:800;color:#1B2F55;display:block;line-height:1.05;letter-spacing:-.02em}#poster .big .q{color:#2F7FC1}',
- '#poster .ref{display:block;font-size:11px;line-height:1.35;color:#7A8394;margin-top:3px;font-weight:400}#poster .cmp{border-top:1px solid #E2E5EA;padding-top:14px;margin-top:6px;font-size:13.5px;line-height:1.5;color:#3B4557}#poster .cmp b{color:#1B2F55}',
- '#poster .top h4{margin:18px 0 8px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#5B6475}#poster .top .r{display:grid;grid-template-columns:1fr 58px;gap:2px 8px;font-size:13px;margin-bottom:6px}#poster .top .bar{grid-column:1/-1;height:6px;background:#EEF1F5;border-radius:3px;overflow:hidden}#poster .top .bar i{display:block;height:100%;background:#2F7FC1;border-radius:3px}',
- '#poster .pm{position:relative;padding:10px 14px}#poster svg.pmap{width:100%;height:640px;display:block}',
- '#poster .lg{position:absolute;right:22px;top:20px;background:rgba(255,255,255,.95);border:1px solid #E2E5EA;border-radius:8px;padding:10px 12px;font-size:12px;max-width:240px;box-shadow:0 4px 14px rgba(16,24,40,.06)}#poster .lg div{display:flex;gap:8px;align-items:center;margin:3px 0}#poster .lg i{width:22px;height:13px;border-radius:2px;display:inline-block;flex:none}#poster .lg .c{border-radius:50%;width:15px;height:15px}',
- '#poster .pf{display:flex;justify-content:space-between;gap:12px;padding:10px 26px;border-top:1px solid #EEF0F3;font-size:11.5px;color:#6B778A}',
- '@media print{body.focus>*:not(main){display:none!important}#poster{border:0}#poster .styles{display:none}@page{size:A4 landscape;margin:8mm}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}'
- ].join('\n');document.head.appendChild(st);
- var main=document.querySelector('main');var P=document.createElement('div');P.id='poster';main.insertBefore(P,main.firstChild);
- var STY=[['geo','Géographie prioritaire'],['pop','Population des quartiers'],['part','Part de la population en QPV'],['nb','Nombre de QPV par commune'],['parc','Parc social en QPV']],sty='geo';
- var TOT={p:0,q:0};for(var i=0;i<N;i++){TOT.p+=U.p[i]||0;TOT.q+=U.q[i]||0}if(D.nat){TOT.p=D.nat.p;TOT.q=D.nat.q}
- var NS2='http://www.w3.org/2000/svg';function E(t,a,p){var e=document.createElementNS(NS2,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
- var RAMP=['#FCE3D6','#F7B79A','#EE8A66','#DD5A42','#BF3330','#8E1B26'],NB=['#FDF3C4','#F9DC6B','#F5B648','#EF8A3A','#E4573A','#B91F2E'];
- function qOf(i){var a=qByCom[U.c[i]];if(a&&a.length)return a;var p=U.pa[U.c[i]];if(!p||!qByCom[p])return [];var b=G[i].b;return qByCom[p].filter(function(k){var q=QG[k].b,cx=(q[0]+q[2])/2,cy=(q[1]+q[3])/2;return cx>=b[0]&&cx<=b[2]&&cy>=b[1]&&cy<=b[3]})}
- function nq(i){return (qOf(i)||[]).length}
- function draw(){var M=members.slice();if(!M.length)return;var t=cur;
-  var pop=0,pq=0,ls=0,lq=0,nc=0,qs={};M.forEach(function(i){pop+=U.p[i]||0;pq+=U.q[i]||0;ls+=S.tot[i]||0;lq+=S.qpv[i]||0;var a=qOf(i)||[];if(a.length)nc++;a.forEach(function(k){qs[k]=1})});if(level!=='e'){var dp2={};M.forEach(function(i){dp2[U.d[i]]=1});Q.d.forEach(function(d,k){if(dp2[d])qs[k]=1})}
-  var nQ=Object.keys(qs).length,sh=pop?100*pq/pop:0,shF=100*TOT.q/TOT.p;
-  var top=M.filter(function(i){return U.q[i]>0}).sort(function(a,b){return U.q[b]-U.q[a]}).slice(0,7),mx=top.length?Math.max.apply(null,top.map(function(i){return 100*U.q[i]/U.p[i]})):1;
-  var lvl=(level==='e'?'l\'intercommunalité':level==='d'?'le département':'la direction régionale');
-  P.innerHTML='<div class="ph"><div class="k">Focus cartographique · quartiers prioritaires 2024</div><h1>La géographie prioritaire · '+t.label+'</h1><p>'+fmt.format(M.length)+' communes · '+fmt.format(nc)+' avec au moins un quartier prioritaire</p></div>'+
-  '<div class="styles">'+STY.map(function(s){return '<button data-s="'+s[0]+'" aria-pressed="'+(s[0]===sty)+'">'+s[1]+'</button>'}).join('')+'</div>'+
-  '<div class="pb"><div class="pl">'+
-   '<p class="big"><b>'+fmt.format(pq)+'</b>habitants vivent dans '+(nQ>1?'un des <b class="q" style="display:inline;font-size:inherit">'+nQ+' quartiers prioritaires</b>':'le quartier prioritaire')+' de '+lvl+'<span class="ref">Population municipale 2020 des QPV 2024, Insee</span></p>'+
-   '<p class="big"><b class="q">'+pct(sh)+'</b>de la population de '+lvl+' vit en QPV, contre '+pct(shF)+' en France<span class="ref">Habitants en QPV / population municipale totale ('+fmt.format(pq)+' / '+fmt.format(pop)+'), Insee 2020. France : toutes communes, outre-mer compris.</span></p>'+
-   (ls?'<p class="big"><b>'+pct(100*lq/ls)+'</b>des logements sociaux de '+lvl+' sont situés dans un QPV<span class="ref">Logements sociaux localisés en QPV / parc social total ('+fmt.format(lq)+' / '+fmt.format(ls)+'), RPLS 2024</span></p>':'')+
-   '<div class="top"><h4>Communes les plus concernées</h4><div class="ref" style="margin:-4px 0 8px">Part des habitants de la commune vivant en QPV (Insee 2020). Classement par nombre d\'habitants en QPV.</div>'+top.map(function(i){var v=100*U.q[i]/U.p[i];return '<div class="r"><span>'+U.n[i]+' <span style="color:#6B778A">· '+fmt.format(U.q[i])+' hab.</span></span><b style="text-align:right">'+pct(v)+'</b><div class="bar"><i style="width:'+Math.max(3,100*v/mx)+'%"></i></div></div>'}).join('')+'</div>'+
-   '<div class="cmp"><b>'+(TOT.q/1e6).toLocaleString('fr-FR',{maximumFractionDigits:1})+' millions</b> d\'habitants vivent en QPV en France, soit <b>'+pct(shF)+'</b> de la population.<span class="ref">Population municipale 2020, toutes communes de l\'outil, outre-mer compris (Insee, populations de référence QPV 2024). Liste officielle 2024 : 1 584 QPV dont 222 en outre-mer.</span></div>'+
-  '</div><div class="pm"><svg class="pmap" role="img" aria-label="Carte de la géographie prioritaire"></svg><div class="lg"></div></div></div>'+
-  '<div class="pf"><span>Sources : ANCT, quartiers prioritaires 2024 ; Insee, populations 2020 ; RPLS 2024. Fonds : Etalab, IGN.</span><span>Action Logement Services · DFBC-POM · Pôle Process Outils et Méthodes · '+new Date().toLocaleDateString('fr-FR',{month:'long',year:'numeric'})+'</span></div>';
-  P.querySelectorAll('.styles button').forEach(function(b){b.onclick=function(){sty=b.dataset.s;draw()}});
-  mapDraw(M);}
- function mapDraw(M){var svgP=P.querySelector('svg.pmap'),lg=P.querySelector('.lg');var z=UZ[M[0]],x0=1e12,y0=1e12,x1=-1e12,y1=-1e12;
-  M.forEach(function(i){var b=G[i].b;if(b[0]<x0)x0=b[0];if(b[1]<y0)y0=b[1];if(b[2]>x1)x1=b[2];if(b[3]>y1)y1=b[3]});
-  var W=svgP.getBoundingClientRect().width||900,H=640,pw=(x1-x0)*.06,ph=(y1-y0)*.06,vb=[x0-pw,y0-ph,x1-x0+2*pw,y1-y0+2*ph];
-  var r=W/H;if(vb[2]/vb[3]<r){var w=vb[3]*r;vb[0]-=(w-vb[2])/2;vb[2]=w}else{var h=vb[2]/r;vb[1]-=(h-vb[3])/2;vb[3]=h}
-  svgP.setAttribute('viewBox',vb.join(' '));svgP.innerHTML='';var sc=vb[2]/W,ms=new Set(M);
-  var gN=E('g',{},svgP),gO=E('g',{},svgP),gC=E('g',{},svgP),gQ=E('g',{},svgP),gD=E('g',{},svgP),gL=E('g',{},svgP),gU=E('g',{},svgP);
-  for(var i=0;i<N;i++){if(ms.has(i)||UZ[i]!==z)continue;var b=G[i].b;if(b[2]<vb[0]||b[0]>vb[0]+vb[2]||b[3]<vb[1]||b[1]>vb[1]+vb[3])continue;E('path',{d:G[i].d,fill:sty==='pop'?'#D9D9D9':'#F3F4F6',stroke:sty==='pop'?'#8A8A8A':'#fff','stroke-width':1.2*sc},gN)}
-  if(sty==='pop'){var df=E('defs',{},svgP);var fl=E('filter',{id:'halo',x:'-10%',y:'-10%',width:'120%',height:'120%'},df);E('feGaussianBlur',{stdDeviation:14*sc},fl);var gH=E('g',{filter:'url(#halo)'},gO);M.forEach(function(i){E('path',{d:G[i].d,fill:'#000',stroke:'#000','stroke-width':16*sc,'fill-opacity':.55,'stroke-opacity':.55},gH)});
- var rg=E('radialGradient',{id:'sph',cx:'32%',cy:'30%',r:'75%'},df);E('stop',{offset:'0','stop-color':'#F4ECF7'},rg);E('stop',{offset:'.45','stop-color':'#9A5BAF'},rg);E('stop',{offset:'1','stop-color':'#4A1260'},rg)}
- M.forEach(function(i){E('path',{d:G[i].d,fill:'none',stroke:'#1A1A1A','stroke-width':5*sc,'stroke-linejoin':'round'},gO)});
-  function fillOf(i){var n=nq(i);if(sty==='pop')return '#fff';if(sty==='geo')return n?'#DCE3EC':'#fff';if(sty==='nb')return n?NB[Math.min(5,n<=4?n-1:n<=6?4:5)]:'#fff';
-   var v=sty==='part'?(U.p[i]?100*U.q[i]/U.p[i]:0):(S.tot[i]?100*S.qpv[i]/S.tot[i]:0);var br=sty==='part'?[5,10,20,30,40]:[10,25,40,55,70];if(!v)return '#fff';for(var k=0;k<5;k++)if(v<br[k])return RAMP[k];return RAMP[5]}
-  M.forEach(function(i){var p=E('path',{d:G[i].d,fill:fillOf(i),stroke:'#9AA3B0','stroke-width':.8*sc},gC);var tt=E('title',{},p);tt.textContent=U.n[i]+(U.q[i]?' · '+fmt.format(U.q[i])+' habitants en QPV ('+pct(100*U.q[i]/U.p[i])+')':'')});
-  var qk=[];Q.q.forEach(function(c,k){if(QZ[k]!==z)return;var b=QG[k].b;if(b[2]<vb[0]||b[0]>vb[0]+vb[2]||b[3]<vb[1]||b[1]>vb[1]+vb[3])return;qk.push(k);
-   var p=E('path',{d:QG[k].d,fill:sty==='geo'?'#2F8FCE':sty==='pop'?'#D88FB8':'none',stroke:sty==='geo'?'#1C5F92':sty==='pop'?'#E0284B':'#1B2F55','stroke-width':(sty==='geo'?.9:1.3)*sc,'fill-opacity':sty==='geo'?.95:1},gQ);var tt=E('title',{},p);tt.textContent=Q.n[k]+' · '+fmt.format(Q.p[k])+' habitants'});
-  if(sty==='geo')qk.filter(function(k){return Q.p[k]>=5000}).forEach(function(k){var b=QG[k].b;E('circle',{cx:(b[0]+b[2])/2,cy:(b[1]+b[3])/2,r:6.5*sc,fill:'#FFD43B',stroke:'#1B2F55','stroke-width':1.2*sc},gD)});
-  var mq={};M.forEach(function(i){(qOf(i)||[]).forEach(function(k){mq[k]=1})});if(level!=='e'){var dp={};M.forEach(function(i){dp[U.d[i]]=1});Q.d.forEach(function(d,k){if(dp[d])mq[k]=1})}if(sty==='pop'){qk=qk.filter(function(k){return mq[k]})}
-  if(sty==='pop'){var qmax=Math.max.apply(null,qk.map(function(k){return Q.p[k]}).concat([1]));var K=Math.min(vb[2],vb[3])*.075/Math.sqrt(qmax);window.__popK=[K/sc,qmax];
-   var gS=E('g',{},svgP);svgP.insertBefore(gS,gQ);qk.slice().sort(function(a,b){return Q.p[b]-Q.p[a]}).forEach(function(k){var b=QG[k].b;var c=E('circle',{cx:(b[0]+b[2])/2,cy:(b[1]+b[3])/2,r:K*Math.sqrt(Q.p[k]),fill:'url(#sph)','fill-opacity':.92,stroke:'#4A1260','stroke-width':.6*sc},gS);var tt=E('title',{},c);tt.textContent=Q.n[k]+' · '+fmt.format(Q.p[k])+' habitants'});}
-  /* étiquettes : communes en capitales, quartiers en bleu italique */
-  var boxes=[];function put(x,y,txt,fs,cls,fill,stroke){var w=txt.length*fs*.56,h=fs*1.15,bx=[x-w/2,y-h/2,x+w/2,y+h/2];if(bx[0]<vb[0]||bx[2]>vb[0]+vb[2]||bx[1]<vb[1]||bx[3]>vb[1]+vb[3])return false;
-   if(boxes.some(function(o){return !(bx[2]<o[0]||bx[0]>o[2]||bx[3]<o[1]||bx[1]>o[3])}))return false;boxes.push(bx);
-   var t=E('text',{x:x,y:y,'text-anchor':'middle','dominant-baseline':'middle',style:'font:'+cls+' '+fs+'px "Source Sans 3",sans-serif;fill:'+fill+';paint-order:stroke;stroke:#fff;stroke-width:'+stroke*sc+'px;stroke-linejoin:round'},gL);t.textContent=txt;return true}
-  if(sty==='pop'){var K2=window.__popK[0]*sc;qk.forEach(function(k){var b=QG[k].b,cx=(b[0]+b[2])/2,cy=(b[1]+b[3])/2;boxes.push([cx-K2*Math.sqrt(Q.p[k]),cy-K2*Math.sqrt(Q.p[k]),cx+K2*Math.sqrt(Q.p[k]),cy+K2*Math.sqrt(Q.p[k])])});
-   var gB=E('g',{},svgP);qk.slice().sort(function(a,b){return Q.p[b]-Q.p[a]}).slice(0,26).forEach(function(k){var b=QG[k].b,cx=(b[0]+b[2])/2,cy=(b[1]+b[3])/2,rr=K2*Math.sqrt(Q.p[k]),txt=Q.n[k],fs=12.5*sc,w=txt.length*fs*.56+12*sc,h=fs*1.75;
-    for(var d=1;d<=7;d++){var ok=false;for(var a=0;a<16;a++){var an=a*Math.PI/8+(d%2?0:Math.PI/16),R=rr+d*26*sc,x=cx+Math.cos(an)*R,y=cy+Math.sin(an)*R*.8,bx=[x-w/2,y-h/2,x+w/2,y+h/2];
-     if(bx[0]<vb[0]||bx[2]>vb[0]+vb[2]||bx[1]<vb[1]||bx[3]>vb[1]+vb[3])continue;if(boxes.some(function(o){return !(bx[2]<o[0]||bx[0]>o[2]||bx[3]<o[1]||bx[1]>o[3])}))continue;boxes.push(bx);
-     E('line',{x1:cx,y1:cy,x2:x,y2:y,stroke:'#1A1A1A','stroke-width':1.1*sc},gB);E('rect',{x:bx[0],y:bx[1],width:w,height:h,fill:'#fff',stroke:'#1A1A1A','stroke-width':1.6*sc},gB);var t=E('text',{x:x,y:y,'text-anchor':'middle','dominant-baseline':'middle',style:'font:700 '+fs+'px "Source Sans 3",sans-serif;fill:#1A1A1A'},gB);t.textContent=txt;ok=true;break}if(ok)break}});}
-  var maxL=Math.round(W/34),nL=0;
-  M.slice().sort(function(a,b){return (U.q[b]||0)-(U.q[a]||0)||U.p[b]-U.p[a]}).forEach(function(i){if(nL>=maxL)return;var x=U.l[2*i]*UN/CU,y=-U.l[2*i+1]*UN/CU;if(put(x,y,U.n[i].toUpperCase(),(U.q[i]?12:10.5)*sc,U.q[i]?'800':'600',U.q[i]?'#1A1A1A':'#6B778A',3.2))nL++});
-  if(sty!=='pop')qk.filter(function(k){return mq[k]}).sort(function(a,b){return Q.p[b]-Q.p[a]}).slice(0,Math.round(maxL*1.2)).forEach(function(k){var b=QG[k].b;put((b[0]+b[2])/2,b[3]+10*sc,Q.n[k],11*sc,'italic 600',sty==='geo'?'#1C5F92':'#1B2F55',3)});
-  /* échelle et nord */
-  var mpu=CU,target=vb[2]*mpu*.18,steps=[500,1000,2000,2500,5000,10000,20000,25000,50000,100000],len=steps[0];steps.forEach(function(s){if(s<=target)len=s});
-  var bx=vb[0]+vb[2]*.04,by=vb[1]+vb[3]*.95,L=len/mpu;
-  [[0,'#1A1A1A'],[L/2,'#fff'],[L/4,'#fff']].slice(0,1);
-  E('rect',{x:bx,y:by-4*sc,width:L/2,height:6*sc,fill:'#1A1A1A'},gU);E('rect',{x:bx+L/2,y:by-4*sc,width:L/2,height:6*sc,fill:'#fff',stroke:'#1A1A1A','stroke-width':sc},gU);
-  [[bx,'0'],[bx+L/2,(len/2>=1000?len/2000:len/2)+''],[bx+L,(len>=1000?len/1000+' km':len+' m')]].forEach(function(a){var t=E('text',{x:a[0],y:by-9*sc,'text-anchor':'middle',style:'font:600 '+11*sc+'px "Source Sans 3",sans-serif;fill:#1A1A1A'},gU);t.textContent=a[1]});
-  var nx=vb[0]+vb[2]*.04+L+40*sc,ny=by-6*sc;E('path',{d:'M'+nx+' '+(ny-34*sc)+'l'+(-8*sc)+' '+(26*sc)+'l'+(8*sc)+' '+(-7*sc)+'z',fill:'#1A1A1A'},gU);E('path',{d:'M'+nx+' '+(ny-34*sc)+'l'+(8*sc)+' '+(26*sc)+'l'+(-8*sc)+' '+(-7*sc)+'z',fill:'#fff',stroke:'#1A1A1A','stroke-width':sc},gU);var tn=E('text',{x:nx,y:ny+8*sc,'text-anchor':'middle',style:'font:700 '+12*sc+'px "Source Sans 3",sans-serif'},gU);tn.textContent='N';
-  /* légende */
-  var h='';if(sty==='pop'){var KK=window.__popK[0],qm=window.__popK[1],tp=qk.reduce(function(a,k){return a+Q.p[k]},0),vals=[qm,Math.round(qm/3/100)*100||Math.round(qm/3),Math.round(qm/9/100)*100||Math.round(qm/9)];
-   h='<b style="display:block;margin-bottom:6px">Population des quartiers</b>'+vals.map(function(v){var d=2*KK*Math.sqrt(v);return '<div><span style="display:inline-block;width:'+Math.max(10,d)+'px;height:'+Math.max(10,d)+'px;border-radius:50%;background:radial-gradient(circle at 32% 30%,#F4ECF7,#9A5BAF 45%,#4A1260)"></span><span>'+fmt.format(v)+' habitants</span></div>'}).join('')+'<div style="margin-top:6px"><i style="background:#D88FB8;border:1px solid #E0284B"></i>Quartier prioritaire</div><div><i style="background:#fff;border:2.5px solid #1A1A1A"></i>Territoire</div><div style="margin-top:6px;font-weight:700">Population totale des quartiers : '+fmt.format(tp)+' habitants</div>'}
-  else if(sty==='geo')h='<b style="display:block;margin-bottom:5px">Géographie prioritaire 2024</b><div><i style="background:#2F8FCE;border:1px solid #1C5F92"></i>Quartier prioritaire (QPV)</div><div><i style="background:#DCE3EC;border:1px solid #9AA3B0"></i>Commune avec au moins un QPV</div><div><i class="c" style="background:#FFD43B;border:1.5px solid #1B2F55"></i>QPV de plus de 5 000 habitants</div><div><i style="background:#fff;border:2.5px solid #1A1A1A"></i>Limite du territoire</div>';
-  else if(sty==='nb')h='<b style="display:block;margin-bottom:5px">Nombre de QPV par commune</b><div style="gap:5px">'+['1','2','3','4','5-6','7+'].map(function(l,k){return '<span style="display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:'+NB[k]+';font-weight:700;font-size:11px;color:'+(k>3?'#fff':'#1B2F55')+'">'+l+'</span>'}).join('')+'</div><div><i style="background:none;border:1.3px solid #1B2F55"></i>Contour des QPV</div>';
-  else{var br=sty==='part'?[5,10,20,30,40]:[10,25,40,55,70];var lab=['Moins de '+br[0]+' %'].concat(br.slice(0,4).map(function(b,k){return b+' à '+br[k+1]+' %'})).concat([br[4]+' % ou plus']);
-   h='<b style="display:block;margin-bottom:5px">'+(sty==='part'?'Part des habitants vivant en QPV':'Part du parc social situé en QPV')+'</b>'+lab.map(function(l,k){return '<div><i style="background:'+RAMP[k]+'"></i>'+l+'</div>'}).reverse().join('')+'<div><i style="background:#fff;border:1px solid #9AA3B0"></i>Aucun</div><div><i style="background:none;border:1.3px solid #1B2F55"></i>Contour des QPV</div>'}
-  lg.innerHTML=h}
- window.__focusDraw=draw;
- var _r=render;render=function(t){_r(t);try{draw()}catch(e){console.log(e.stack)}};try{draw()}catch(e){console.log(e.stack)}
- window.__printHTML=function(){var css=[].map.call(document.querySelectorAll('style'),function(s){return s.textContent}).join('\n');return '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Focus · '+cur.label+'</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap"><style>'+css+'\nbody{margin:0;background:#fff}#poster .styles{display:none}#poster svg.pmap{height:150mm}#poster .pb{min-height:0}@page{size:A4 landscape;margin:7mm}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}</style></head><body class="focus">'+P.outerHTML+'</body></html>'};
-})();
-
-;
-/* ----- infobulles ----- */
-(function(){var b=document.createElement('div');b.id='tipb';b.style.cssText='position:fixed;z-index:99999;max-width:300px;background:#1B2F55;color:#fff;font:13px/1.45 "Source Sans 3",system-ui,sans-serif;padding:8px 11px;border-radius:7px;box-shadow:0 8px 24px rgba(16,24,40,.25);pointer-events:none;opacity:0;transition:opacity .12s;left:0;top:0';
- function add(){document.body.appendChild(b)}if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
- var st=document.createElement('style');st.textContent='[data-tip]{cursor:help}[data-tip].tipi::after{content:"i";display:inline-grid;place-items:center;width:14px;height:14px;margin-left:5px;border-radius:50%;border:1px solid currentColor;font:700 9.5px/1 Georgia,serif;font-style:italic;opacity:.55;vertical-align:1px}';document.head.appendChild(st);
- var cur=null;
- function show(el,e){var t=el.getAttribute('data-tip');if(!t)return;b.textContent=t;b.style.opacity=1;move(e)}
- function move(e){var w=b.offsetWidth,h=b.offsetHeight,x=e.clientX+14,y=e.clientY+16;if(x+w>innerWidth-8)x=e.clientX-w-12;if(y+h>innerHeight-8)y=e.clientY-h-12;b.style.left=Math.max(6,x)+'px';b.style.top=Math.max(6,y)+'px'}
- document.addEventListener('mouseover',function(e){var el=e.target.closest&&e.target.closest('[data-tip],[title]');if(el&&el.hasAttribute('title')&&!el.closest('.leaflet-container svg')){var t=el.getAttribute('title');if(t){el.setAttribute('data-tip',t)}el.removeAttribute('title')}
-  el=e.target.closest&&e.target.closest('[data-tip]');if(el!==cur){cur=el;if(el)show(el,e);else b.style.opacity=0}});
- document.addEventListener('mousemove',function(e){if(cur)move(e)});
- document.addEventListener('scroll',function(){b.style.opacity=0;cur=null},true);
- window.__tipMap=function(map){function ap(){map.forEach(function(m){document.querySelectorAll(m[0]).forEach(function(el){if(!el.hasAttribute('data-tip')){el.setAttribute('data-tip',m[1]);if(m[2])el.classList.add('tipi')}})})}
-  ap();new MutationObserver(function(){clearTimeout(window.__tipT);window.__tipT=setTimeout(ap,120)}).observe(document.body,{childList:true,subtree:true})};
-})();
-
-;
-window.__tipMap([
- ['#lv-e','Établissement public de coopération intercommunale : métropole, communauté urbaine ou d\'agglomération.'],
- ['#lv-d','Afficher un département entier.'],['#lv-r','Afficher une direction régionale d\'Action Logement Services.'],
- ['#q','Tapez le nom d\'un EPCI, d\'un département ou d\'une direction régionale.'],
- ['label:has(#t-qpv)','Affiche les contours des quartiers prioritaires 2024.'],['label:has(#t-lab)','Affiche le nom des communes et des grands quartiers.'],
- ['.legend h3','Les classes de couleur de la carte. Cliquez pour masquer ou afficher la légende.'],
- ['.kpi.main','Valeur de l\'indicateur choisi pour l\'ensemble du territoire, comparée à la France.'],
- ['th[data-s]','Cliquez pour trier le tableau sur cette colonne.'],
- ['#tb tr','Cliquez pour zoomer sur la commune.'],
- ['#poster .styles button[data-s=geo]','Quartiers prioritaires en bleu, communes concernées en gris bleuté, point jaune pour les quartiers de plus de 5 000 habitants.'],
- ['#poster .styles button[data-s=pop]','Sphères proportionnelles au nombre d\'habitants de chaque quartier (Insee, population 2020).'],
- ['#poster .styles button[data-s=part]','Habitants de la commune vivant en QPV / population municipale de la commune (Insee 2020).'],
- ['#poster .styles button[data-s=nb]','Nombre de quartiers prioritaires 2024 dont le périmètre touche la commune.'],
- ['#poster .styles button[data-s=parc]','Logements sociaux localisés en QPV / logements sociaux de la commune (RPLS 2024).'],
- ['#poster .big b','Chiffre calculé sur l\'ensemble des communes du territoire choisi. La ligne grise dessous donne le numérateur, le dénominateur et la source.'],
- ['#poster .top .r','Part des habitants de la commune vivant en QPV (Insee 2020).'],
- ['#poster .cmp','Référence nationale : ensemble des communes de l\'outil, outre-mer compris.'],
- ['#poster .lg','Légende de la carte. Survolez une commune ou un quartier sur la carte pour son détail.'],
- ['#zin','Zoomer'],['#zout','Dézoomer'],['#zre','Revenir à la vue du territoire entier']
-]);
-
-;
-})();<\/script></body></html><script>(function(){function f(){var l=document.getElementById("legend");if(!l)return setTimeout(f,300);l.addEventListener("click",function(e){if(e.target.closest("h3"))l.classList.toggle("min")});if(innerWidth<900)l.classList.add("min")}f()})();<\/script></body></html></script>
+<script>(function(){function f(){var l=document.getElementById("legend");if(!l)return setTimeout(f,300);l.addEventListener("click",function(e){if(e.target.closest("h3"))l.classList.toggle("min")});if(innerWidth<900)l.classList.add("min")}f()})();<\/script></body></html><script>(function(){function f(){var l=document.getElementById("legend");if(!l)return setTimeout(f,300);l.addEventListener("click",function(e){if(e.target.closest("h3"))l.classList.toggle("min")});if(innerWidth<900)l.classList.add("min")}f()})();<\/script></body></html></script>
 
 <script>/* @preserve
  * Leaflet 1.9.4, a JS library for interactive maps. https://leafletjs.com
@@ -1823,7 +1621,7 @@ function hero(p){const h=HERO[p];document.getElementById('hero').innerHTML=`<div
 let atlasDone=false;
 function go(p){CUR=p;document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.p===p));document.querySelectorAll('.pane').forEach(x=>x.hidden=x.id!=='p-'+p);hero(p);
  if(p==='atlas'&&!atlasDone){atlasDone=true;const src=document.getElementById('atlasSrc').textContent.replace(/<\\\/script/g,'</'+'script');document.getElementById('atlasFrame').srcdoc = src}
- if(p==='focus'&&!window.__focusDone){window.__focusDone=1;const src=document.getElementById('atlasSrc').textContent.replace(/<\\\/script/g,'</'+'script');document.getElementById('focusFrame').srcdoc = src.replace('const start=(location.hash.slice(1).split(\'&\')[0])||\'atlas\';','const start=\'focus\';')}
+ if(p==='focus'&&!window.__focusDone){window.__focusDone=1;const src=document.getElementById('atlasSrc').textContent.replace(/<\\\/script/g,'</'+'script');document.getElementById('focusFrame').srcdoc = src.replace("if(location.hash.indexOf('focus')<0)return;", "")}
  if(p==='qpv'&&window.__qvInit)setTimeout(window.__qvInit,20);
  if(p==='adresse')setTimeout(initAdr,20);
  try{history.replaceState(null,'','#'+p)}catch(e){}}
